@@ -1,6 +1,8 @@
 ThisBuild / organization := "com.example"
 ThisBuild / scalaVersion := "3.2.1"
 
+Runtime / unmanagedClasspath += baseDirectory.value / "src" / "main" / "resources"
+
 lazy val root = (project in file(".")).settings(
   name := "json-template-qh2",
   libraryDependencies ++= Seq(
