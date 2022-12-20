@@ -3,7 +3,7 @@
 Json codec for quartz-h2 http2 server.<br>
 https://github.com/ollls/quartz-h2
 
-##Debug level in logback-test.xml
+## Debug level in logback-test.xml
 For perf tests put debug level to "info"
 
 ## Run application
