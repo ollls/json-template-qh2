@@ -11,10 +11,6 @@ sbt run
 ## Benchmark ( MacBook 2019 )
 
 ```shell
-sbt test
-```
-
-```shell
 h2load -D10 -c32 -t2 -m18 https://localhost:8443/json
 
 starting benchmark...
