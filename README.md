@@ -1,6 +1,7 @@
 # json-template-qh2
 
-Json codec for quartz-h2 http2 web srver.
+Json codec for quartz-h2 http2 server.
+https://github.com/ollls/quartz-h2
 
 ## Run application
 
