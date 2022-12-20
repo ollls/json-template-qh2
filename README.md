@@ -1,6 +1,6 @@
 # json-template-qh2
 
-An example application built from the [ce3.g8 template](https://github.com/typelevel/ce3.g8).
+Json codec for quartz-h2 http2 web srver.
 
 ## Run application
 
