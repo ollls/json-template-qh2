@@ -8,7 +8,7 @@ Json codec for quartz-h2 http2 web srver.
 sbt run
 ```
 
-## Run tests
+## Benchmark ( MacBook 2019 )
 
 ```shell
 sbt test
