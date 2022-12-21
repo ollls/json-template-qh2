@@ -1,4 +1,4 @@
-# json-template-qh2
+# json-template-qh2 with jsoniter-scala
 
 Json codec for quartz-h2 http2 server.<br>
 https://github.com/ollls/quartz-h2
