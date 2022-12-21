@@ -3,7 +3,7 @@
 quartz-h2 http2 server.<br>
 https://github.com/ollls/quartz-h2
 
-JSON library.<br?
+JSON library.<br>
 https://github.com/plokhotnyuk/jsoniter-scala
 
 ## Debug level in logback-test.xml
