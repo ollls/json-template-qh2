@@ -1,9 +1,9 @@
 # quartz-h2 JSON https/2 server with jsoniter-scala json codec.
 
-Json codec for quartz-h2 http2 server.<br>
+quartz-h2 http2 server.<br>
 https://github.com/ollls/quartz-h2
 
-JSON library
+JSON library.<br?
 https://github.com/plokhotnyuk/jsoniter-scala
 
 ## Debug level in logback-test.xml
