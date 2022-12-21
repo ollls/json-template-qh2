@@ -1,7 +1,10 @@
-# json-template-qh2 with jsoniter-scala
+# quartz-h2 JSON http/2 server with jsoniter-scala json codec.
 
 Json codec for quartz-h2 http2 server.<br>
 https://github.com/ollls/quartz-h2
+
+JSON library
+https://github.com/plokhotnyuk/jsoniter-scala
 
 ## Debug level in logback-test.xml
 For perf tests put debug level to "info", for debuggging use "debug" or "trace"
