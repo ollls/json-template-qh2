@@ -11,6 +11,11 @@ For perf tests put debug level to "info", for debuggging use "debug" or "trace"
 
 ## Run application
 
+To run as standalone jar 
+```shell
+sbt assembly
+```
+
 ```shell
 sbt run
 ```
