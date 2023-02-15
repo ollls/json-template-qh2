@@ -15,7 +15,7 @@ To build as standalone jar
 ```shell
 sbt assembly
 ```
-
+To run with sbt
 ```shell
 sbt run
 ```
