@@ -28,6 +28,7 @@ object Main extends IOApp {
   given codec: JsonValueCodec[User] = JsonCodecMaker.make
 
   val R: HttpRouteIO = {
+    case GET -> Root / "test" => IO(Response.Ok())
     //////////////////////////////
     case GET -> Root / "json" =>
       for {
