@@ -1,5 +1,5 @@
 ThisBuild / organization := "com.example"
-ThisBuild / scalaVersion := "3.2.1"
+ThisBuild / scalaVersion := "3.2.2"
 
 Runtime / unmanagedClasspath += baseDirectory.value / "src" / "main" / "resources"
 
