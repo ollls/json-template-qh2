@@ -1,5 +1,13 @@
 # quartz-h2 JSON https/2 server with jsoniter-scala json codec.
 
+To run json-template-qh2 in docker use:
+
+```
+sbt assembly
+docker build -t name:Dockerfile . 
+docker run -p 8443:8443 -t name:Dockerfile
+```
+
 quartz-h2 http2 server.<br>
 https://github.com/ollls/quartz-h2
 
