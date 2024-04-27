@@ -1,5 +1,6 @@
 package com.example
 
+import ch.qos.logback.classic.Level
 import cats.effect.{IO, IOApp, ExitCode}
 import io.quartz.QuartzH2Server
 import io.quartz.http2.routes.{HttpRouteIO, Routes}
@@ -15,6 +16,10 @@ import fs2.{Stream, Chunk}
 import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 import io.quartz.MyLogger._
+import sttp.tapir._
+import sttp.tapir.generic.auto._
+import sttp.tapir.json.jsoniter.jsonBody
+import io.quartz.sttp.QuartzH2ServerInterpreter
 
 //To re-generate slef-signed cert use.
 //keytool -genkey -keyalg RSA -alias selfsigned -keystore keystore.jks -storepass password -validity 360 -keysize 2048
@@ -27,40 +32,29 @@ object Main extends IOApp {
 
   given codec: JsonValueCodec[User] = JsonCodecMaker.make
 
-  val R: HttpRouteIO = {
-    case GET -> Root / "test" => IO(Response.Ok())
-    //////////////////////////////
-    case GET -> Root / "json" =>
-      for {
-        json <- IO(
-          writeToArray(
-            User(
-              name = "John",
-              devices = Seq(Device(id = 2, model = "iPhone X"))
-            )
-          )
+   def run(args: List[String]): IO[ExitCode] =
+    val top = endpoint.get
+      .in("")
+      .errorOut(stringBody)
+      .out(stringBody)
+      .serverLogic(Unit => IO(Right("ok")))
+    val user =
+      endpoint.get
+        .in("user")
+        .errorOut(stringBody)
+        .out(jsonBody[User])
+        .serverLogicSuccess(Unit =>
+          IO(new User("Olaf", Array(new Device(15, "bb15"))))
         )
-      } yield (Response
-        .Ok()
-        .asStream(Stream.chunk(Chunk.array(json)))
-        .contentType(JSON))
+    val serverEndpoints = List(top, user)
 
-    ///////////////////////////////    
-    // Body POST example: { "name" : "John", "devices" : [{"id":1,"model":"HTC One X"}] }
-    case req @ POST -> Root / "user" =>
-      for {
-        payload <- req.body
-        user <- IO(readFromArray(payload))
-        _ <- Logger[IO].info( "json-template-gh2: user: " +  user.toString())
+    val TAPIR_ROUTE = QuartzH2ServerInterpreter().toRoutes(serverEndpoints)
 
-      } yield (Response.Ok().asText(user.name + " - accepted"))
-  }
-
-  def run(args: List[String]): IO[ExitCode] =
     for {
+      _ <- IO(QuartzH2Server.setLoggingLevel(Level.TRACE))
       ctx <- QuartzH2Server.buildSSLContext("TLS", "keystore.jks", "password")
-      exitCode <- new QuartzH2Server( "0.0.0.0", 8443, 16000, ctx)
-        .startIO(R, sync = false)
+      exitCode <- new QuartzH2Server("0.0.0.0", 8443, 16000, ctx)
+        .start(TAPIR_ROUTE, sync = false)
 
     } yield (exitCode)
 }
