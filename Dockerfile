@@ -3,6 +3,6 @@
 FROM amazoncorretto:20
 WORKDIR /app
 COPY  keystore.jks .
-COPY target/scala-3.2.2/qh2-http-run.jar .
+COPY target/scala-3.3.3/qh2-http-run.jar .
 EXPOSE 8443
 CMD java -jar qh2-http-run.jar
