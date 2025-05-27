@@ -13,8 +13,8 @@ assembly / assemblyJarName := "qh2-http-run.jar"
 lazy val root = (project in file(".")).settings(
   name := "json-template-qh2",
   libraryDependencies ++= Seq(
-    "io.github.ollls" %% "quartz-h2" % "0.7",
-    "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "2.19.1",
-    "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % "2.19.1" % "compile-internal"
+    "io.github.ollls" %% "quartz-h2" % "0.9.0",
+    "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "2.35.2",
+    "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % "2.35.2" % "compile-internal",
   )
 )

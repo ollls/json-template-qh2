@@ -59,8 +59,9 @@ object Main extends IOApp {
   def run(args: List[String]): IO[ExitCode] =
     for {
       ctx <- QuartzH2Server.buildSSLContext("TLS", "keystore.jks", "password")
-      exitCode <- new QuartzH2Server( "0.0.0.0", 8443, 16000, ctx)
-        .startIO(R, sync = false)
+      //exitCode <- new QuartzH2Server( "0.0.0.0", 8443, 16000, Some(ctx)).iouring_startIO(R, urings = 1)
+      exitCode <- new QuartzH2Server( "0.0.0.0", 8443, 16000, Some(ctx)).startIO(R, sync = false)
+  
 
     } yield (exitCode)
 }
